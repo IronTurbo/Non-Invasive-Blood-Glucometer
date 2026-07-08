@@ -1,1 +1,0 @@
-# Non-Invasive-Blood-Glucometer
