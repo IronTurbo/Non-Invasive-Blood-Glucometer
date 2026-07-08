@@ -1,11 +1,11 @@
 # Non-Invasive Blood Glucometer
 
-> A complete end-to-end Biomedical Engineering graduation project for
-> non-invasive blood glucose estimation using Photoplethysmography
-> (PPG), Machine Learning, Deep Learning, ESP32, and the MAX30102
-> sensor.
+A complete end-to-end Biomedical Engineering graduation project for
+non-invasive blood glucose estimation using Photoplethysmography
+(PPG), Machine Learning, Deep Learning, ESP32, and the MAX30102
+sensor.
 
-> **Status:** Graduation Project (2026)
+> **Status:** Biomedical Engineering Department - Helwan Engineering - Capital University - Graduation Project (2026)
 
 ------------------------------------------------------------------------
 
@@ -28,7 +28,7 @@ one complete workflow.
 
 Google Drive Video:
 
-> Replace this text with your Google Drive link.
+> https://drive.google.com/file/d/16MKuDp4G-feqg6tA89Y82ZEd0qpIlKbb/view?usp=sharing
 
 ------------------------------------------------------------------------
 
@@ -170,11 +170,9 @@ exploring different preprocessing strategies and regression models.
 Models investigated include:
 
 -   Linear Regression
--   Ridge Regression
--   Lasso Regression
--   ElasticNet
 -   Support Vector Regression
 -   K-Nearest Neighbors
+-   Random Forest
 -   XGBoost
 
 Saved trained models are included in the repository.
@@ -233,7 +231,9 @@ evaluation.
 
 ## Web
 
-Open the Web folder using Chrome or Microsoft Edge.
+Open the Web App using Chrome or Microsoft Edge.
+
+> https://ironturbo.github.io/GlucoSense/
 
 ## Machine Learning
 
@@ -280,11 +280,7 @@ volunteers, and everyone who contributed to this project.
 
 # Authors
 
-Ahmed Ismail Abdelmohsen Mohamed
-
 Abdelrahman Mohamed Abdelmoneim
-
-Taha Mohamed Rashed
 
 Biomedical Engineering Department
 
