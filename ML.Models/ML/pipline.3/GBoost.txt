@@ -1,0 +1,3 @@
+BMI, AC, Skew, Kurt
+Gradient Boosting:
+  ➡ MAE: 14.49 | RMSE: 20.90 | R2: 0.66

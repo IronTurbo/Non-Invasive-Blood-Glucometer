@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Non-invasive glucose monitoring app. Connect your ESP32 PPG sensor via Bluetooth to get real-time glucose readings.">
+    <meta name="theme-color" content="#0a0e27">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>GlucoSense — Smart Glucose Monitor</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header id="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">💉</span>
+                    <h1>GlucoSense</h1>
+                </div>
+                <div id="ble-status" class="ble-status disconnected">
+                    <span class="ble-dot"></span>
+                    <span class="ble-text">Disconnected</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content">
+
+            <!-- Glucose Display Card -->
+            <section id="glucose-section" class="card glucose-card">
+                <div id="glucose-ring" class="glucose-ring">
+                    <svg class="ring-svg" viewBox="0 0 200 200">
+                        <circle class="ring-bg" cx="100" cy="100" r="90" />
+                        <circle id="ring-progress" class="ring-fill" cx="100" cy="100" r="90" />
+                    </svg>
+                    <div class="glucose-value-container">
+                        <span id="glucose-value" class="glucose-value">---</span>
+                        <span class="glucose-unit">mg/dL</span>
+                    </div>
+                </div>
+                <p id="glucose-label" class="glucose-label">Connect sensor to begin</p>
+                <div id="glucose-range" class="glucose-range hidden">
+                    <span class="range-dot"></span>
+                    <span id="range-text" class="range-text"></span>
+                </div>
+            </section>
+
+            <!-- Progress Bar (visible during collection) -->
+            <section id="progress-section" class="card progress-card hidden">
+                <div class="progress-header">
+                    <span class="progress-title">📡 Collecting Data...</span>
+                    <div>
+                        <span id="timer-count" class="timer-count" style="margin-right: 10px; font-weight: bold; color: var(--accent);">0s</span>
+                        <span id="sample-count" class="sample-count">0 samples</span>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <p class="progress-hint">Hold sensor steady on fingertip</p>
+            </section>
+
+            <!-- Controls -->
+            <section id="controls-section" class="controls-section">
+                <button id="btn-connect" class="btn btn-connect" onclick="handleConnect()">
+                    <span class="btn-icon">📶</span>
+                    Connect Sensor
+                </button>
+                <div id="reading-controls" class="reading-controls hidden">
+                    <button id="btn-start" class="btn btn-start" onclick="startReading()">
+                        <span class="btn-icon">▶</span>
+                        Start Reading
+                    </button>
+                    <button id="btn-stop" class="btn btn-stop hidden" onclick="stopReading()">
+                        <span class="btn-icon">⏹</span>
+                        Stop & Process
+                    </button>
+                </div>
+            </section>
+
+            <!-- User Profile Card -->
+            <section id="profile-section" class="card profile-card">
+                <div class="card-header" onclick="toggleProfile()">
+                    <h2>👤 Your Profile</h2>
+                    <span id="profile-toggle" class="toggle-arrow">▾</span>
+                </div>
+                <div id="profile-body" class="card-body">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="input-weight">Weight (kg)</label>
+                            <input type="number" id="input-weight" placeholder="70" min="20" max="300" step="0.1" oninput="updateBMI()">
+                        </div>
+                        <div class="input-group">
+                            <label for="input-height">Height (cm)</label>
+                            <input type="number" id="input-height" placeholder="170" min="50" max="250" step="0.1" oninput="updateBMI()">
+                        </div>
+                    </div>
+                    <div class="bmi-display">
+                        <span class="bmi-label">Your BMI</span>
+                        <span id="bmi-value" class="bmi-value">—</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Card -->
+            <section id="history-section" class="card history-card">
+                <div class="card-header">
+                    <h2>📊 Reading History</h2>
+                    <button id="btn-clear-history" class="btn-text" onclick="clearHistory()">Clear</button>
+                </div>
+                <div id="history-body" class="card-body">
+                    <div id="history-list" class="history-list">
+                        <p class="history-empty">No readings yet. Connect your sensor to start!</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer id="app-footer">
+            <p>⚠️ For research purposes only. Not a medical device.</p>
+        </footer>
+    </div>
+
+    <script src="glucose_model.js?v=20"></script>
+    <script src="app.js?v=20"></script>
+</body>
+</html>

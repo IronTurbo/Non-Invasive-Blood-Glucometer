@@ -1,0 +1,3 @@
+HR, RR, AC, Slope, Skew
+Support Vector Machine (SVR):
+  ➡ MAE: 17.67 | RMSE: 28.19 | R2: 0.39
